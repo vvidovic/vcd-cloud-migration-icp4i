@@ -1,0 +1,27 @@
+product: 1.0.0
+info:
+  name: vcd-cp4i-demo-product
+  title: VCD CP4I Demo Product
+  version: 1.0.0
+visibility:
+  view:
+    enabled: true
+    type: public
+    tags: []
+    orgs: []
+  subscribe:
+    enabled: true
+    type: authenticated
+    tags: []
+    orgs: []
+apis:
+  vcd-cpi-demo-api:
+    $ref: vcd-cp4i-demo-api.yaml
+plans:
+  default:
+    title: Default Plan
+    description: Default Plan
+    approval: false
+    rate-limit:
+      hard-limit: true
+      value: 10/1minute

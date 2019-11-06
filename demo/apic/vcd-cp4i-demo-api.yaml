@@ -1,0 +1,82 @@
+swagger: '2.0'
+info:
+  x-ibm-name: vcd-cp4i-demo-api
+  title: VCD CP4I Demo API
+  version: 1.0.0
+schemes:
+  - https
+host: $(catalog.host)
+basePath: /vcd-cp4i-demo-api
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+security:
+  - clientIdHeader: []
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  assembly:
+    execute:
+      - switch:
+          title: switch
+          case:
+            - condition: "((request.verb==='GET')&&(api.operation.path==='/hello'))"
+              execute:
+                - invoke:
+                    target-url: $(urlEcho)?$(request.querystring)
+            - condition: "((request.verb==='POST')&&(api.operation.path==='/message'))"
+              execute: []
+            - condition: "((request.verb==='POST')&&(api.operation.path==='/log'))"
+              execute: []
+            - otherwise:
+                - gatewayscript:
+                    title: unkonwn-path
+                    version: 1.0.0
+                    source: 'throw "Unknown path requested."'
+          version: 1.0.0
+    catch: []
+  phase: realized
+  properties:
+    urlLog:
+      value: 'http://10.0.1.113:20003'
+      description: ''
+      encoded: false
+    urlMessage:
+      value: 'http://10.0.1.113:20002'
+      description: ''
+      encoded: false
+    urlEcho:
+      value: 'http://10.0.1.113:20001'
+      description: ''
+      encoded: false
+paths:
+  /hello:
+    get:
+      responses:
+        '200':
+          description: 200 OK
+      parameters:
+        - name: name
+          type: string
+          required: true
+          in: query
+  /message:
+    post:
+      responses:
+        '200':
+          description: 200 OK
+  /log:
+    post:
+      responses:
+        '200':
+          description: 200 OK
+definitions: {}
+tags: []

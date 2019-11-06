@@ -1,0 +1,187 @@
+<datapower-configuration version="3">
+  <export-details>
+    <comment/>
+    <current-date>2019-11-06</current-date>
+    <current-time>11:32:26 CET</current-time>
+    <custom-ui-file/>
+    <description>Exported Configuration</description>
+    <device-name>dptf</device-name>
+    <display-firmware-version>XI52.7.5.2.13</display-firmware-version>
+    <display-model>DataPower XI52</display-model>
+    <display-product>XI52</display-product>
+    <domain>vvidovic</domain>
+    <firmware-build>297366</firmware-build>
+    <firmware-timestamp>2018/03/09 21:21:17</firmware-timestamp>
+    <firmware-version>XI50.7.5.2.13</firmware-version>
+    <login-message/>
+    <model>DataPower XI50</model>
+    <product>XI50</product>
+    <product-id>5725</product-id>
+    <reset-date>2018-10-11</reset-date>
+    <reset-time>08:12:47 CEST</reset-time>
+    <serial-number>0000000</serial-number>
+    <user>admin</user>
+  </export-details>
+  <interface-data>
+    <interface ip-addr="10.0.1.111" name="eth0" type="Ethernet" vers="ipv4"/>
+    <interface ip-addr="10.0.1.112" name="eth1" type="Ethernet" vers="ipv4"/>
+    <interface ip-addr="10.0.1.113" name="eth2" type="Ethernet" vers="ipv4"/>
+  </interface-data>
+  <configuration domain="vvidovic">
+    <HTTPUserAgent xmlns:dp="http://www.datapower.com/schemas/management" xmlns:env="http://www.w3.org/2003/05/soap-envelope" intrinsic="true" name="default">
+      <MaxRedirects>8</MaxRedirects>
+      <Timeout>300</Timeout>
+      <UserSummary>Default User Agent</UserSummary>
+      <mAdminState>enabled</mAdminState>
+    </HTTPUserAgent>
+    <XMLManager xmlns:dp="http://www.datapower.com/schemas/management" xmlns:env="http://www.w3.org/2003/05/soap-envelope" intrinsic="true" name="default">
+      <CacheSize>256</CacheSize>
+      <DocCacheMaxDocs>5000</DocCacheMaxDocs>
+      <DocCacheSize>0</DocCacheSize>
+      <DocMaxWrites>32768</DocMaxWrites>
+      <Memoization>on</Memoization>
+      <ParserLimitsAttributeCount>128</ParserLimitsAttributeCount>
+      <ParserLimitsBytesScanned>4194304</ParserLimitsBytesScanned>
+      <ParserLimitsElementDepth>512</ParserLimitsElementDepth>
+      <ParserLimitsExternalReferences>forbid</ParserLimitsExternalReferences>
+      <ParserLimitsForbidExternalReferences>on</ParserLimitsForbidExternalReferences>
+      <ParserLimitsMaxLocalNames>60000</ParserLimitsMaxLocalNames>
+      <ParserLimitsMaxNamespaces>1024</ParserLimitsMaxNamespaces>
+      <ParserLimitsMaxNodeSize>33554432</ParserLimitsMaxNodeSize>
+      <ParserLimitsMaxPrefixes>1024</ParserLimitsMaxPrefixes>
+      <SHA1Caching>on</SHA1Caching>
+      <SearchResults>on</SearchResults>
+      <StaticDocumentCalls>on</StaticDocumentCalls>
+      <SupportTxWarn>off</SupportTxWarn>
+      <UserAgent class="HTTPUserAgent">default</UserAgent>
+      <UserSummary>Default XML-Manager</UserSummary>
+      <mAdminState>enabled</mAdminState>
+    </XMLManager>
+    <Matching xmlns:dp="http://www.datapower.com/schemas/management" xmlns:env="http://www.w3.org/2003/05/soap-envelope" name="match-all">
+      <CombineWithOr>off</CombineWithOr>
+      <MatchRules>
+        <CustomMethod/>
+        <ErrorCode/>
+        <HttpTag/>
+        <HttpValue/>
+        <Method>default</Method>
+        <Type>url</Type>
+        <Url>*</Url>
+        <XPATHExpression/>
+      </MatchRules>
+      <MatchWithPCRE>off</MatchWithPCRE>
+      <mAdminState>enabled</mAdminState>
+    </Matching>
+    <StylePolicyAction xmlns:dp="http://www.datapower.com/schemas/management" xmlns:env="http://www.w3.org/2003/05/soap-envelope" name="vcd-demo-xmlfw-policy_rule_gatewayscript_0">
+      <ActionDebug persisted="false">off</ActionDebug>
+      <Asynchronous>off</Asynchronous>
+      <GatewayScriptLocation>local:///vcd-cpi-echo.js</GatewayScriptLocation>
+      <Input>INPUT</Input>
+      <IteratorType>XPATH</IteratorType>
+      <JWSVerifyStripSignature>on</JWSVerifyStripSignature>
+      <MethodRewriteType>GET</MethodRewriteType>
+      <MethodType>POST</MethodType>
+      <MethodType2>POST</MethodType2>
+      <MultipleOutputs>off</MultipleOutputs>
+      <NamedInOutLocationType>default</NamedInOutLocationType>
+      <Output>OUTPUT</Output>
+      <ResultsMode>first-available</ResultsMode>
+      <RetryCount>0</RetryCount>
+      <RetryInterval>1000</RetryInterval>
+      <SOAPValidation>body</SOAPValidation>
+      <SQLSourceType>static</SQLSourceType>
+      <SSLClientConfigType>proxy</SSLClientConfigType>
+      <Timeout>0</Timeout>
+      <Transactional>off</Transactional>
+      <TransformLanguage>none</TransformLanguage>
+      <Type>gatewayscript</Type>
+      <mAdminState>enabled</mAdminState>
+    </StylePolicyAction>
+    <StylePolicyRule xmlns:dp="http://www.datapower.com/schemas/management" xmlns:env="http://www.w3.org/2003/05/soap-envelope" name="vcd-demo-xmlfw-policy_rule">
+      <Actions class="StylePolicyAction">vcd-demo-xmlfw-policy_rule_gatewayscript_0</Actions>
+      <Direction>rule</Direction>
+      <InputFormat>none</InputFormat>
+      <NonXMLProcessing>off</NonXMLProcessing>
+      <OutputFormat>none</OutputFormat>
+      <Unprocessed>off</Unprocessed>
+      <mAdminState>enabled</mAdminState>
+    </StylePolicyRule>
+    <StylePolicy xmlns:dp="http://www.datapower.com/schemas/management" xmlns:env="http://www.w3.org/2003/05/soap-envelope" name="vcd-demo-xmlfw-policy">
+      <DefStylesheetForSoap>store:///filter-reject-all.xsl</DefStylesheetForSoap>
+      <DefStylesheetForXsl>store:///identity.xsl</DefStylesheetForXsl>
+      <DefXQueryForJSON>store:///reject-all-json.xq</DefXQueryForJSON>
+      <PolicyMaps>
+        <Match class="Matching">match-all</Match>
+        <Rule class="StylePolicyRule">vcd-demo-xmlfw-policy_rule</Rule>
+      </PolicyMaps>
+      <mAdminState>enabled</mAdminState>
+    </StylePolicy>
+    <XMLFirewallService xmlns:dp="http://www.datapower.com/schemas/management" xmlns:env="http://www.w3.org/2003/05/soap-envelope" name="vcd-demo-xmlfw">
+      <AlwaysShowErrors>off</AlwaysShowErrors>
+      <BackAttachmentFormat>dynamic</BackAttachmentFormat>
+      <CredentialCharset>protocol</CredentialCharset>
+      <DebugHistory>25</DebugHistory>
+      <DebugMode persisted="false">on</DebugMode>
+      <DebuggerType>internal</DebuggerType>
+      <DefaultParamNamespace>http://www.datapower.com/param/config</DefaultParamNamespace>
+      <DelayErrors>on</DelayErrors>
+      <DelayErrorsDuration>1000</DelayErrorsDuration>
+      <DisallowEmptyResponse>off</DisallowEmptyResponse>
+      <DisallowGet>off</DisallowGet>
+      <DoChunkedUpload>off</DoChunkedUpload>
+      <DoHostRewrite>on</DoHostRewrite>
+      <FirewallParserLimits>off</FirewallParserLimits>
+      <ForcePolicyExec>off</ForcePolicyExec>
+      <FrontAttachmentFormat>dynamic</FrontAttachmentFormat>
+      <HTTPClientIPLabel>X-Client-IP</HTTPClientIPLabel>
+      <HTTPCompression>off</HTTPCompression>
+      <HTTPIncludeResponseTypeEncoding>off</HTTPIncludeResponseTypeEncoding>
+      <HTTPLogCorIDLabel>X-Global-Transaction-ID</HTTPLogCorIDLabel>
+      <HTTPPersistTimeout>180</HTTPPersistTimeout>
+      <HTTPPersistentConnections>on</HTTPPersistentConnections>
+      <HTTPProxyPort>800</HTTPProxyPort>
+      <HTTPTimeout>120</HTTPTimeout>
+      <HTTPVersion>
+        <Back>HTTP/1.1</Back>
+        <Front>HTTP/1.1</Front>
+      </HTTPVersion>
+      <LocalAddress>0.0.0.0</LocalAddress>
+      <LocalPort>20001</LocalPort>
+      <MIMEHeaders>on</MIMEHeaders>
+      <MaxMessageSize>0</MaxMessageSize>
+      <MonitorProcessingPolicy>terminate-at-first-throttle</MonitorProcessingPolicy>
+      <ParserLimitsAttachmentByteCount>2000000000</ParserLimitsAttachmentByteCount>
+      <ParserLimitsAttachmentPackageByteCount>0</ParserLimitsAttachmentPackageByteCount>
+      <ParserLimitsAttributeCount>128</ParserLimitsAttributeCount>
+      <ParserLimitsBytesScanned>4194304</ParserLimitsBytesScanned>
+      <ParserLimitsElementDepth>512</ParserLimitsElementDepth>
+      <ParserLimitsExternalReferences>forbid</ParserLimitsExternalReferences>
+      <ParserLimitsForbidExternalReferences>on</ParserLimitsForbidExternalReferences>
+      <ParserLimitsMaxLocalNames>60000</ParserLimitsMaxLocalNames>
+      <ParserLimitsMaxNamespaces>1024</ParserLimitsMaxNamespaces>
+      <ParserLimitsMaxNodeSize>33554432</ParserLimitsMaxNodeSize>
+      <ParserLimitsMaxPrefixes>1024</ParserLimitsMaxPrefixes>
+      <Priority>normal</Priority>
+      <QueryParamNamespace>http://www.datapower.com/param/query</QueryParamNamespace>
+      <RequestAttachments>strip</RequestAttachments>
+      <RequestType>preprocessed</RequestType>
+      <ResponseAttachments>strip</ResponseAttachments>
+      <ResponseType>unprocessed</ResponseType>
+      <RewriteErrors>on</RewriteErrors>
+      <RootPartNotFirstAction>process-in-order</RootPartNotFirstAction>
+      <SOAPSchemaURL>store:///schemas/soap-envelope.xsd</SOAPSchemaURL>
+      <SSLConfigType>proxy</SSLConfigType>
+      <StylePolicy class="StylePolicy">vcd-demo-xmlfw-policy</StylePolicy>
+      <SuppressHTTPWarnings>off</SuppressHTTPWarnings>
+      <Type>loopback-proxy</Type>
+      <UserSummary>Virtual Community Day Cloud Migration14th November XML Firewall Service</UserSummary>
+      <WSDLResponsePolicy>off</WSDLResponsePolicy>
+      <WebGUIMode>off</WebGUIMode>
+      <XMLManager class="XMLManager">default</XMLManager>
+      <mAdminState>enabled</mAdminState>
+    </XMLFirewallService>
+  </configuration>
+  <files>
+    <file hash="iqWRVFlYxEjO3ow+4zkzjUI3MI4=" location="local" name="local:///vcd-cpi-echo.js" src="local/vcd-cpi-echo.js"/>
+  </files>
+</datapower-configuration>
