@@ -3,6 +3,8 @@ info:
   name: vcd-cp4i-demo-product
   title: VCD CP4I Demo Product
   version: 1.0.0
+gateways:
+  - datapower-api-gateway
 visibility:
   view:
     enabled: true
@@ -16,7 +18,7 @@ visibility:
     orgs: []
 apis:
   vcd-cpi-demo-api:
-    $ref: vcd-cp4i-demo-api.yaml
+    name: "vcd-cp4i-demo-api:1.0.0"
 plans:
   default:
     title: Default Plan

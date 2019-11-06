@@ -39,9 +39,9 @@ x-ibm-configuration:
             - otherwise:
                 - gatewayscript:
                     title: unkonwn-path
-                    version: 1.0.0
+                    version: 2.0.0
                     source: 'throw "Unknown path requested."'
-          version: 1.0.0
+          version: 2.0.0
     catch: []
   phase: realized
   properties:
