@@ -1,82 +1,98 @@
 swagger: '2.0'
 info:
-  x-ibm-name: vcd-cp4i-demo-api
   title: VCD CP4I Demo API
+  x-ibm-name: vcd-cp4i-demo-api
   version: 1.0.0
 schemes:
   - https
-host: $(catalog.host)
 basePath: /vcd-cp4i-demo-api
-consumes:
-  - application/json
-produces:
-  - application/json
+security:
+  - clientID: []
 securityDefinitions:
-  clientIdHeader:
+  clientID:
     type: apiKey
     in: header
     name: X-IBM-Client-Id
-security:
-  - clientIdHeader: []
 x-ibm-configuration:
-  testable: true
-  enforced: true
   cors:
     enabled: true
+  gateway: datapower-api-gateway
+  type: rest
+  phase: realized
+  enforced: true
+  testable: true
   assembly:
     execute:
       - switch:
+          version: 2.0.0
           title: switch
           case:
-            - condition: "((request.verb==='GET')&&(api.operation.path==='/hello'))"
+            - condition: (($httpVerb() = 'GET' and $operationPath() = '/hello'))
               execute:
                 - invoke:
-                    target-url: $(urlEcho)?$(request.querystring)
-            - condition: "((request.verb==='POST')&&(api.operation.path==='/message'))"
+                    version: 2.0.0
+                    title: invoke
+                    header-control:
+                      type: blacklist
+                      values: []
+                    parameter-control:
+                      type: whitelist
+                      values: []
+                    timeout: 60
+                    verb: keep
+                    cache-response: protocol
+                    cache-ttl: 900
+                    stop-on-error: []
+                    target-url: $(echoUrl)?$(request.querystring)
+            - condition: (($httpVerb() = 'POST' and $operationPath() = '/message'))
               execute: []
-            - condition: "((request.verb==='POST')&&(api.operation.path==='/log'))"
+            - condition: (($httpVerb() = 'POST' and $operationPath() = '/log'))
               execute: []
             - otherwise:
                 - gatewayscript:
-                    title: unkonwn-path
                     version: 2.0.0
-                    source: 'throw "Unknown path requested."'
-          version: 2.0.0
-    catch: []
-  phase: realized
+                    title: gatewayscript
+                    source: |-
+                      const apim = require('apim');
+                      throw "Unknown API operation called.";
   properties:
-    urlLog:
-      value: 'http://10.0.1.113:20003'
-      description: ''
+    echoUrl:
+      value: 'http://icp-proxy.10.0.10.2.nip.io:30201'
       encoded: false
-    urlMessage:
-      value: 'http://10.0.1.113:20002'
-      description: ''
-      encoded: false
-    urlEcho:
-      value: 'http://10.0.1.113:20001'
-      description: ''
-      encoded: false
+  application-authentication:
+    certificate: false
+  catalogs: {}
+  activity-log:
+    success-content: activity
+    error-content: header
+    enabled: true
 paths:
-  /hello:
-    get:
-      responses:
-        '200':
-          description: 200 OK
-      parameters:
-        - name: name
-          type: string
-          required: true
-          in: query
-  /message:
-    post:
-      responses:
-        '200':
-          description: 200 OK
   /log:
     post:
       responses:
         '200':
-          description: 200 OK
-definitions: {}
-tags: []
+          schema:
+            type: string
+          description: success
+  /message:
+    post:
+      responses:
+        '200':
+          schema:
+            type: string
+          description: success
+  /hello:
+    get:
+      responses:
+        '200':
+          description: success
+          schema:
+            type: string
+      parameters:
+        - name: name
+          in: query
+          required: true
+          description: Sample demo name
+          type: string
+      consumes: []
+      produces: []
