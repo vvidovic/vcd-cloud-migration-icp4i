@@ -47,7 +47,22 @@ x-ibm-configuration:
             - condition: (($httpVerb() = 'POST' and $operationPath() = '/message'))
               execute: []
             - condition: (($httpVerb() = 'POST' and $operationPath() = '/log'))
-              execute: []
+              execute:
+                - invoke:
+                    version: 2.0.0
+                    title: invoke
+                    header-control:
+                      type: blacklist
+                      values: []
+                    parameter-control:
+                      type: whitelist
+                      values: []
+                    timeout: 60
+                    verb: keep
+                    cache-response: protocol
+                    cache-ttl: 900
+                    stop-on-error: []
+                    target-url: $(logUrl)
             - otherwise:
                 - gatewayscript:
                     version: 2.0.0
@@ -58,6 +73,9 @@ x-ibm-configuration:
   properties:
     echoUrl:
       value: 'http://icp-proxy.10.0.10.2.nip.io:30201'
+      encoded: false
+    logUrl:
+      value: 'http://icp-proxy.10.0.10.2.nip.io:32515/log/v1/message'
       encoded: false
   application-authentication:
     certificate: false
