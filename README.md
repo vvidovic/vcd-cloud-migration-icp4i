@@ -26,6 +26,9 @@ on demo.
 Here are links with information and program which can be useful for demo system
 setup and it's better understanding.
 
+### ICP4I DataPower instance setup
+
+Detailed description of ICP4I DataPower instance is given in document [DemoDataPowerAccessSetup.md](./DemoDataPowerAccessSetup.md).
 ### DataPower Commander
 
 DataPower command line admin tool useful for development, maintenance and testing of DataPower applications.
